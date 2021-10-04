@@ -1,7 +1,23 @@
-const Form = () => {
+import TodoList from "./TodoList";
+
+const Form = (props) => {
+  const inputTextHandler = (event) => {
+    props.setInputText(event.target.value);
+  };
+
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+
+    props.setTodos([
+      ...props.todos,
+      { text: props.inputText, completed: false, id: Math.random() * 1000 },
+    ]);
+    props.setInputText("");
+  };
+
   return (
-    <form>
-      <input type="text" className="todo-input" />
+    <form onSubmit={formSubmissionHandler}>
+      <input onChange={inputTextHandler} type="text" className="todo-input" value={props.inputText} />
       <button className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
