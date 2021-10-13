@@ -1,20 +1,12 @@
 import Todo from "./Todo";
 
-const TodoList = ({todos, setTodos}) => {
+const TodoList = ({ todos, toggleComplete, removeTodo }) => {
   return (
-    <div className="todo-container">
-      <ul className="todo-list">
-        {todos.map((todo) => (
-          <Todo
-          key={todo.id}
-            text={todo.text}
-            completed={todo.completed}
-            setTodos={setTodos}
-            todo={todo}
-          />
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {todos.map((todo) => (
+        <Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} removeTodo={removeTodo} />
+      ))}
+    </ul>
   );
 };
 

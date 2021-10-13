@@ -1,20 +1,26 @@
-const Todo = ({ text, todo, todos, setTodos }) => {
-  const deleteTodoHandler = () => {
-    setTodos(todos.filter((el) => el.id == todo.id));
-    // console.log(todo);
+import { Fragment } from "react";
+
+const Todo = ({ todo, toggleComplete, removeTodo }) => {
+  const checkboxClickHandler = () => {
+    toggleComplete(todo.id);
   };
 
+  const todoRemoveHandler = () => {
+    removeTodo(todo.id);
+  };
+
+  const listItemClassses = todo.completed ? "todo-completed" : "";
+
   return (
-    <div className="todo">
-      <li className="todo-item">{text}</li>
+    <div className="todo-items">
+      <div className="todo-list-item">
+        <li className={listItemClassses}>{todo.task}</li>
+      </div>
 
-      <button className="complete-btn">
-        <i className="fas fa-check"></i>
-      </button>
-
-      <button onClick={deleteTodoHandler} className="trash-btn">
-        <i className="fas fa-trash"></i>
-      </button>
+      <div className="todo-actions">
+        <input type="checkbox" onClick={checkboxClickHandler} />
+        <button onClick={todoRemoveHandler}>Remove</button>
+      </div>
     </div>
   );
 };
