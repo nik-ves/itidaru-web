@@ -1,11 +1,24 @@
-import Todo from "./Todo";
+import { useContext } from "react";
 
-const TodoList = ({ todos, toggleComplete, removeTodo }) => {
+import { TodoContext } from '../context/todo-context';
+import TodoItem from "./TodoItem";
+
+const TodoList = () => {
+  const todoCtx = useContext(TodoContext);
+
+  // checking if there are no items in Todos array
+  const isTodos = todoCtx.todos.length === 0;
+
   return (
     <ul>
-      {todos.map((todo) => (
-        <Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} removeTodo={removeTodo} />
+      {todoCtx.todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          item={todo.item}
+          removeTodo={todoCtx.removeTodo.bind(this, todo.id)}
+        />
       ))}
+      {isTodos && <p>No todos yet, add some!</p>}
     </ul>
   );
 };

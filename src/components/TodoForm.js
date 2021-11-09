@@ -1,37 +1,31 @@
-import { useState } from "react";
+import { useContext } from "react";
 
-const TodoForm = ({ addTodo }) => {
-  const [todo, setTodo] = useState({
-    id: "",
-    task: "",
-    completed: false,
-  });
+import { TodoContext } from "../context/todo-context";
+import useTodo from "../hooks/use-input";
 
-  const inputChangeHandler = (event) => {
-    setTodo({ ...todo, task: event.target.value });
-  };
+const TodoForm = () => {
+  const {
+    inputValue: todo,
+    valueChangeHandler: todoChangeHandler,
+    valueReset: resetInput,
+  } = useTodo();
 
-  const formSubmissionHandler = (event) => {
+  const todoCtx = useContext(TodoContext);
+
+  const submitHandler = (event) => {
     event.preventDefault();
 
-    if (todo.task.trim()) {
-      addTodo({ ...todo, id: Math.floor(Math.random() * 1000) });
-      setTodo({ ...todo, task: "" });
-    }
+    todoCtx.addTodo(todo);
+
+    resetInput();
   };
 
   return (
-    <div className="form-box">
-      <form onSubmit={formSubmissionHandler}>
-        <input
-          name="task"
-          type="text"
-          onChange={inputChangeHandler}
-          value={todo.task}
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <form className="form" onSubmit={submitHandler}>
+      <input type="text" id="text" value={todo} onChange={todoChangeHandler} />
+
+      <button type="submit">Add todo</button>
+    </form>
   );
 };
 
