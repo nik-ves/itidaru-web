@@ -1,16 +1,18 @@
-import { useContext } from "react";
-
+import { useContext, useEffect } from "react";
 import { TodoContext } from "../context/todo-context";
 import useTodo from "../hooks/use-todo";
 
 const TodoForm = () => {
+  const todoCtx = useContext(TodoContext);
   const {
     inputValue: todo,
     valueChangeHandler: todoChangeHandler,
     valueReset: resetInput,
   } = useTodo();
 
-  const todoCtx = useContext(TodoContext);
+  useEffect(() => {
+    todoCtx.fetchData();
+  }, []);
 
   const submitHandler = (event) => {
     event.preventDefault();
