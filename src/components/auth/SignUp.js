@@ -6,7 +6,7 @@ const SignUp = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, registerMessage } = useContext(AuthContext);
 
   const userEmailChangeHandler = (event) => {
     setUserEmail(event.target.value);
@@ -53,6 +53,7 @@ const SignUp = () => {
           <div className="form-actions">
             <button type="submit">Sign Up</button>
           </div>
+          <p className="form-status-message">{registerMessage}</p>
         </form>
       </section>
     </Container>

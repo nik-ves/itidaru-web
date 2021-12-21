@@ -7,7 +7,7 @@ const SignIn = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  const authCtx = useContext(AuthContext);
+  const { authUser, authMessage } = useContext(AuthContext);
 
   const userEmailChangeHandler = (event) => {
     setUserEmail(event.target.value);
@@ -20,12 +20,8 @@ const SignIn = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    authCtx.authUser(userEmail, userPassword);
-
-    console.log(authCtx.currentUser);
+    authUser(userEmail, userPassword);
   };
-
-  console.log(authCtx.currentUser);
 
   return (
     <Container>
@@ -58,6 +54,7 @@ const SignIn = () => {
           <div className="form-actions">
             <button type="submit">Sign In</button>
           </div>
+          <p className="form-status-message">{authMessage}</p>
         </form>
       </section>
     </Container>

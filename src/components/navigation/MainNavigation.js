@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/auth-context";
 import { useContext } from "react";
 
 const MainNavigation = () => {
-  const authCtx = useContext(AuthContext);
+  const { isLoggedIn, logoutUser } = useContext(AuthContext);
 
   return (
     <section className={classes["main-navigation"]}>
@@ -16,28 +16,38 @@ const MainNavigation = () => {
           </div>
 
           <ul className={classes["navigation-links"]}>
-            {!authCtx.isLoggedIn && (
+            <li>
+              <NavLink to="/" exact activeClassName={classes["active"]}>
+                Home
+              </NavLink>
+            </li>
+
+            {!isLoggedIn && (
               <li>
-                <NavLink to="/sign-in" activeClassName={classes["active"]}>
+                <NavLink
+                  to="/sign-in"
+                  exact
+                  activeClassName={classes["active"]}
+                >
                   Sign In
                 </NavLink>
               </li>
             )}
-            {!authCtx.isLoggedIn && (
+            {!isLoggedIn && (
               <li>
                 <NavLink to="/sign-up" activeClassName={classes["active"]}>
                   Sign Up
                 </NavLink>
               </li>
             )}
-            {authCtx.isLoggedIn && (
+            {isLoggedIn && (
               <li>
                 <NavLink to="/my-todos" activeClassName={classes["active"]}>
                   My Todos
                 </NavLink>
               </li>
             )}
-            {authCtx.isLoggedIn && <li onClick={authCtx.logoutUser}>Logout</li>}
+            {isLoggedIn && <li onClick={logoutUser}>Logout</li>}
           </ul>
         </div>
       </Container>
