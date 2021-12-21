@@ -24,8 +24,8 @@ const TodoForm = () => {
   };
 
   return (
-    <div className={classes["todo-form-content"]}>
-      <h1>Your Todos</h1>
+    <section className={classes["todo-form-content"]}>
+      <h2>Your Todos</h2>
 
       <form className={classes["form-todo"]} onSubmit={submitHandler}>
         <input
@@ -37,7 +37,7 @@ const TodoForm = () => {
 
         <button type="submit">Add todo</button>
       </form>
-    </div>
+    </section>
   );
 };
 

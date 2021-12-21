@@ -1,5 +1,9 @@
 :root {
-  --main-color: #6457a6;
+  /* --main-color: #6457a6;
+  --secondary-color: #9dacff; */
+
+  --main-color: #272838;
+  --secondary-color: #7e7f9a;
 }
 
 * {
@@ -16,14 +20,77 @@ html {
 
 body {
   color: #000;
+  background-color: var(--secondary-color);
 }
 
 ul {
   list-style: none;
 }
 
+button {
+  font: inherit;
+}
+
 .container {
   max-width: 120rem;
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+/* ===== Auth form styles ===== */
+
+.auth-form-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.sign-up-form {
+  padding: 2rem 4rem;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.form-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.form-control {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.form-control input {
+  border: 2px solid white;
+  width: 30rem;
+  max-width: 100%;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.form-control input:focus {
+  outline: none;
+  border: 2px solid black;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.form-actions button {
+  border: 1px solid white;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
