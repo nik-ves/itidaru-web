@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { TodoContext } from "../../context/todo-context";
 import useTodo from "../../hooks/use-todo";
 import classes from "./TodoForm.module.css";
@@ -10,10 +10,6 @@ const TodoForm = () => {
     valueChangeHandler: todoChangeHandler,
     valueReset: resetInput,
   } = useTodo();
-
-  useEffect(() => {
-    todoCtx.fetchData();
-  }, []);
 
   const submitHandler = (event) => {
     event.preventDefault();

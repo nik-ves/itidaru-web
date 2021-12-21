@@ -4,6 +4,7 @@ import { AuthContext } from "./auth-context";
 
 export const TodoContext = React.createContext({
   todos: [],
+  setTodos: () => {},
   addTodo: () => {},
   removeTodo: () => {},
   fetchData: () => {},
@@ -53,6 +54,7 @@ const TodoContextProvider = (props) => {
 
   const contextValue = {
     todos,
+    setTodos,
     addTodo: addTodoHandler,
     removeTodo: removeTodoHandler,
     fetchData,

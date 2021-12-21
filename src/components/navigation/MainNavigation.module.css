@@ -17,6 +17,7 @@
 .navigation-links {
   display: flex;
   font-size: 1.8rem;
+  align-items: center;
 }
 
 .navigation-links li {
@@ -32,4 +33,14 @@
 
 .navigation-links a.active {
   border-bottom: 3px solid white;
+}
+
+.signup-item {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+}
+
+.logout-item {
+  cursor: pointer;
 }

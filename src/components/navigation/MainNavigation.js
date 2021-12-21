@@ -34,10 +34,8 @@ const MainNavigation = () => {
               </li>
             )}
             {!isLoggedIn && (
-              <li>
-                <NavLink to="/sign-up" activeClassName={classes["active"]}>
-                  Sign Up
-                </NavLink>
+              <li className={classes["signup-item"]}>
+                <NavLink to="/sign-up">Sign Up</NavLink>
               </li>
             )}
             {isLoggedIn && (
@@ -47,7 +45,11 @@ const MainNavigation = () => {
                 </NavLink>
               </li>
             )}
-            {isLoggedIn && <li onClick={logoutUser}>Logout</li>}
+            {isLoggedIn && (
+              <li className={classes["logout-item"]} onClick={logoutUser}>
+                Logout
+              </li>
+            )}
           </ul>
         </div>
       </Container>

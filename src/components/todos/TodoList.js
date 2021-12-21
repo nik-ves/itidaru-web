@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TodoContext } from "../../context/todo-context";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
@@ -6,20 +6,27 @@ import classes from "./TodoList.module.css";
 import Container from "../UI/Container";
 
 const TodoList = () => {
-  const todoCtx = useContext(TodoContext);
+  const { todos, fetchData, removeTodo } = useContext(TodoContext);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Container>
       <TodoForm />
 
       <ul className={classes["todo-list"]}>
-        {todoCtx.todos.map((todo, index) => (
+        {todos.map((todo, index) => (
           <TodoItem
             key={index}
             todo={todo.todo}
-            removeTodo={todoCtx.removeTodo.bind(this, todo.id)}
+            removeTodo={removeTodo.bind(this, todo.id)}
           />
         ))}
+        <p className={classes["todo-message"]}>
+          {todos.length === 0 ? "No todos. Add some!" : ""}
+        </p>
       </ul>
     </Container>
   );
