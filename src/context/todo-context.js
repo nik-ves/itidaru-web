@@ -14,20 +14,23 @@ const TodoContextProvider = (props) => {
   let url =
     "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo.json";
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo.json"
-    );
-    const loadedTodos = [];
-    const data = response.data;
+  const fetchData = () => {
+    axios
+      .get(
+        "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo.json"
+      )
+      .then((response) => {
+        const loadedTodos = [];
+        const data = response.data;
 
-    for (const key in data) {
-      loadedTodos.push({
-        id: key,
-        todo: data[key].todo,
+        for (const key in data) {
+          loadedTodos.push({
+            id: key,
+            todo: data[key].todo,
+          });
+        }
+        setTodos(loadedTodos);
       });
-    }
-    setTodos(loadedTodos);
   };
 
   const addTodoHandler = (todo) => {
