@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "../UI/Container";
 import classes from "./MainNavigation.module.css";
 import { AuthContext } from "../../context/auth-context";
@@ -12,16 +12,12 @@ const MainNavigation = () => {
       <Container>
         <div className={classes["navigation-content"]}>
           <div className={classes["navigation-logo-box"]}>
-            <h1>Todos</h1>
+            <Link to="/">
+              <h1>Todos</h1>
+            </Link>
           </div>
 
           <ul className={classes["navigation-links"]}>
-            <li>
-              <NavLink to="/" exact activeClassName={classes["active"]}>
-                Home
-              </NavLink>
-            </li>
-
             {!isLoggedIn && (
               <li>
                 <NavLink

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TodoContext } from "../../context/todo-context";
-import useTodo from "../../hooks/use-todo";
+import useInput from "../../hooks/use-input";
 import classes from "./TodoForm.module.css";
 
 const TodoForm = () => {
@@ -9,7 +9,7 @@ const TodoForm = () => {
     inputValue: todo,
     valueChangeHandler: todoChangeHandler,
     valueReset: resetInput,
-  } = useTodo();
+  } = useInput();
 
   const submitHandler = (event) => {
     event.preventDefault();

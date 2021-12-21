@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useTodo = () => {
+const useInput = () => {
   const [inputValue, setInputValue] = useState("");
 
   const valueChangeHandler = (event) => {
@@ -14,8 +14,8 @@ const useTodo = () => {
   return {
     inputValue: inputValue,
     valueChangeHandler,
-    valueReset
+    valueReset,
   };
 };
 
-export default useTodo;
+export default useInput;

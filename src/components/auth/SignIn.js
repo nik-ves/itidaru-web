@@ -1,26 +1,30 @@
-import { useState, useContext } from "react";
-
+import { useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
 import Container from "../UI/Container";
+import useInput from "../../hooks/use-input";
 
 const SignIn = () => {
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const {
+    inputValue: userEmail,
+    valueChangeHandler: userEmailChangeHandler,
+    valueReset: resetUserEmailInput,
+  } = useInput();
+
+  const {
+    inputValue: userPassword,
+    valueChangeHandler: userPasswordChangeHandler,
+    valueReset: resetUserPasswordInput,
+  } = useInput();
 
   const { authUser, authMessage } = useContext(AuthContext);
-
-  const userEmailChangeHandler = (event) => {
-    setUserEmail(event.target.value);
-  };
-
-  const userPasswordChangeHandler = (event) => {
-    setUserPassword(event.target.value);
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     authUser(userEmail, userPassword);
+
+    resetUserEmailInput();
+    resetUserPasswordInput();
   };
 
   return (
@@ -46,6 +50,7 @@ const SignIn = () => {
             <input
               id="password"
               type="password"
+              min="7"
               value={userPassword}
               onChange={userPasswordChangeHandler}
             />

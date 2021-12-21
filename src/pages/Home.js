@@ -27,7 +27,7 @@ const Home = () => {
           <div className="welcome-text-footer">
             <p>
               Made by{" "}
-              <a href="https://nikves.com" target="_blank">
+              <a href="https://nikves.com" target="_blank" rel="noreferrer">
                 nikves
               </a>
               .

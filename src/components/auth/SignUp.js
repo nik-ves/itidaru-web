@@ -1,25 +1,30 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
+import useInput from "../../hooks/use-input";
 import Container from "../UI/Container";
 
 const SignUp = () => {
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const {
+    inputValue: userEmail,
+    valueChangeHandler: userEmailChangeHandler,
+    valueReset: resetUserEmailInput,
+  } = useInput();
+
+  const {
+    inputValue: userPassword,
+    valueChangeHandler: userPasswordChangeHandler,
+    valueReset: resetUserPasswordInput,
+  } = useInput();
 
   const { registerUser, registerMessage } = useContext(AuthContext);
-
-  const userEmailChangeHandler = (event) => {
-    setUserEmail(event.target.value);
-  };
-
-  const userPasswordChangeHandler = (event) => {
-    setUserPassword(event.target.value);
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
 
     registerUser(userEmail, userPassword);
+
+    resetUserEmailInput();
+    resetUserPasswordInput();
   };
 
   return (
