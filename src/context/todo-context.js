@@ -18,32 +18,38 @@ const TodoContextProvider = (props) => {
     const response = await axios.get(
       "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo.json"
     );
+    const loadedTodos = [];
     const data = response.data;
-    setTodos(Object.values(data));
+
+    for (const key in data) {
+      loadedTodos.push({
+        id: key,
+        todo: data[key].todo,
+      });
+    }
+    setTodos(loadedTodos);
   };
 
   const addTodoHandler = (todo) => {
     axios({
       method: "POST",
       url: "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo.json",
-      data: { id: Math.random(), todo: todo },
+      data: { todo: todo },
     }).then((response) => {
       setTodos((prevState) => {
-        return [...prevState, { id: Math.random(), todo: todo }];
+        return [...prevState, { id: response.data.name, todo: todo }];
       });
     });
   };
 
   const removeTodoHandler = (todoId) => {
-    // axios({
-    //   method: "DELETE",
-    //   url: `https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo/${todoId}.json`,
-    //   data: { id: Math.random(), todo: "Test" },
-    // }).then((response) => {
-    //   console.log(response);
-    //   setTodos(todos.filter((todo) => todo.id !== todoId));
-    // });
-    setTodos(todos.filter((todo) => todo.id !== todoId));
+    axios
+      .delete(
+        `https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/todo/${todoId}.json`
+      )
+      .then((response) => {
+        setTodos(todos.filter((todo) => todo.id !== todoId));
+      });
   };
 
   const contextValue = {

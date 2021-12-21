@@ -14,9 +14,9 @@ const TodoList = () => {
 
   return (
     <ul>
-      {todoCtx.todos.map((todo) => (
+      {todoCtx.todos.map((todo, index) => (
         <TodoItem
-          key={todo.id}
+          key={index}
           todo={todo.todo}
           removeTodo={todoCtx.removeTodo.bind(this, todo.id)}
         />
