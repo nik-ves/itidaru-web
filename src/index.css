@@ -3,7 +3,7 @@
   --secondary-color: #9dacff; */
 
   --main-color: #272838;
-  --secondary-color: #7e7f9a;
+  --secondary-color: #9899ae;
 }
 
 * {
@@ -19,7 +19,6 @@ html {
 }
 
 body {
-  color: #000;
   background-color: var(--secondary-color);
 }
 
