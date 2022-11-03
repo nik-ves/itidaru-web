@@ -19,45 +19,46 @@ const AuthContextProvider = (props) => {
 
   const isLoggedIn = currentUser;
 
-  const registerUserHandler = (userEmail, userPassword) => {
-    axios({
-      method: "POST",
-      url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
-      data: {
-        email: userEmail,
-        password: userPassword,
-        returnSecureToken: true,
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          setRegisterMessage("Account created succesfully!");
-        }
-      })
-      .catch((error) => {
-        setRegisterMessage("Something went wrong. Try again.");
+  const registerUserHandler = async (userEmail, userPassword) => {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
+        data: {
+          email: userEmail,
+          password: userPassword,
+          returnSecureToken: true,
+        },
       });
+
+      setCurrentUser({
+        idToken: response.data.idToken,
+        email: response.data.email,
+      });
+    } catch (error) {
+      setRegisterMessage(error.response.data.error.message);
+    }
   };
 
-  const authenticateUserHandler = (userEmail, userPassword) => {
-    axios({
-      method: "POST",
-      url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
-      data: {
-        email: userEmail,
-        password: userPassword,
-        returnSecureToken: true,
-      },
-    })
-      .then((response) => {
-        setCurrentUser({
-          idToken: response.data.idToken,
-          email: response.data.email,
-        });
-      })
-      .catch((err) => {
-        setAuthMessage("Something went wrong! Check your login information!");
+  const authenticateUserHandler = async (userEmail, userPassword) => {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
+        data: {
+          email: userEmail,
+          password: userPassword,
+          returnSecureToken: true,
+        },
       });
+
+      setCurrentUser({
+        idToken: response.data.idToken,
+        email: response.data.email,
+      });
+    } catch (error) {
+      setAuthMessage(error.response.data.error.message);
+    }
   };
 
   const logoutUserHandler = () => {

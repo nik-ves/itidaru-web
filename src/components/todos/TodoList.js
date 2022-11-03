@@ -6,10 +6,14 @@ import classes from "./TodoList.module.css";
 import Container from "../UI/Container";
 
 const TodoList = () => {
-  const { todos, fetchData, removeTodo } = useContext(TodoContext);
+  const { todos, fetchData, removeTodo, setTodos } = useContext(TodoContext);
 
   useEffect(() => {
     fetchData();
+
+    return () => {
+      setTodos([]);
+    };
   }, []);
 
   return (
