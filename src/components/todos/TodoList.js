@@ -2,8 +2,9 @@ import { useContext, useEffect } from "react";
 import { TodoContext } from "../../context/todo-context";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
-import classes from "./TodoList.module.css";
 import Container from "../UI/Container";
+
+import { List, TodoMessage } from "./TodoList.styles";
 
 const TodoList = () => {
   const { todos, fetchData, removeTodo, setTodos } = useContext(TodoContext);
@@ -20,7 +21,7 @@ const TodoList = () => {
     <Container>
       <TodoForm />
 
-      <ul className={classes["todo-list"]}>
+      <List>
         {todos.map((todo, index) => (
           <TodoItem
             key={index}
@@ -28,10 +29,11 @@ const TodoList = () => {
             removeTodo={removeTodo.bind(this, todo.id)}
           />
         ))}
-        <p className={classes["todo-message"]}>
+
+        <TodoMessage>
           {todos.length === 0 ? "No todos. Add some!" : ""}
-        </p>
-      </ul>
+        </TodoMessage>
+      </List>
     </Container>
   );
 };

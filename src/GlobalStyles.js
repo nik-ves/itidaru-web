@@ -1,7 +1,7 @@
-:root {
-  /* --main-color: #6457a6;
-  --secondary-color: #9dacff; */
+import { createGlobalStyle } from "styled-components";
 
+const GlobalStyles = createGlobalStyle`
+:root {
   --main-color: #272838;
   --secondary-color: #9899ae;
   --tertiary-color: #acadbe;
@@ -157,3 +157,6 @@ button {
     margin: 5rem auto;
   }
 }
+`;
+
+export default GlobalStyles;

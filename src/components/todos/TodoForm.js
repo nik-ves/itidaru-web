@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { TodoContext } from "../../context/todo-context";
 import useInput from "../../hooks/use-input";
-import classes from "./TodoForm.module.css";
+
+import { Form, SubmitBtn, TextInput, Wrapper } from "./TodoForm.styles";
 
 const TodoForm = () => {
   const todoCtx = useContext(TodoContext);
@@ -20,20 +21,20 @@ const TodoForm = () => {
   };
 
   return (
-    <section className={classes["todo-form-content"]}>
+    <Wrapper>
       <h2>Your Todos</h2>
 
-      <form className={classes["form-todo"]} onSubmit={submitHandler}>
-        <input
+      <Form onSubmit={submitHandler}>
+        <TextInput
           type="text"
           id="text"
           value={todo}
           onChange={todoChangeHandler}
         />
 
-        <button type="submit">Add todo</button>
-      </form>
-    </section>
+        <SubmitBtn type="submit">Add todo</SubmitBtn>
+      </Form>
+    </Wrapper>
   );
 };
 

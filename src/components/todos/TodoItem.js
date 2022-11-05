@@ -1,10 +1,10 @@
-import classes from "./TodoItem.module.css";
+import { ListItem, TodoName } from "./TodoItem.styles";
 
 const TodoItem = (props) => {
   return (
-    <li className={classes["todo-list-item"]} onClick={props.removeTodo}>
-      <span>{props.todo}</span>
-    </li>
+    <ListItem onClick={props.removeTodo}>
+      <TodoName>{props.todo}</TodoName>
+    </ListItem>
   );
 };
 

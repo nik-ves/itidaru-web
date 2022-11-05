@@ -8,12 +8,16 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import Home from "./pages/Home";
 
+import GlobalStyles from "./GlobalStyles";
+
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <Fragment>
       <MainNavigation />
+
+      <GlobalStyles />
 
       <Switch>
         <Route path="/" exact>

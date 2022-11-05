@@ -1,55 +1,50 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "../UI/Container";
-import classes from "./MainNavigation.module.css";
 import { AuthContext } from "../../context/auth-context";
 import { useContext } from "react";
+
+import {
+  Content,
+  Links,
+  Logo,
+  LogoutBtn,
+  Wrapper,
+} from "./MainNavigation.styles";
 
 const MainNavigation = () => {
   const { isLoggedIn, logoutUser } = useContext(AuthContext);
 
   return (
-    <section className={classes["main-navigation"]}>
+    <Wrapper>
       <Container>
-        <div className={classes["navigation-content"]}>
-          <div className={classes["navigation-logo-box"]}>
-            <Link to="/">
-              <h1>Todos</h1>
-            </Link>
-          </div>
+        <Content>
+          <Link to="/">
+            <Logo>Todos</Logo>
+          </Link>
 
-          <ul className={classes["navigation-links"]}>
+          <Links>
             {!isLoggedIn && (
               <li>
-                <NavLink
-                  to="/sign-in"
-                  exact
-                  activeClassName={classes["active"]}
-                >
+                <NavLink to="/sign-in" exact>
                   Sign In
                 </NavLink>
               </li>
             )}
             {!isLoggedIn && (
-              <li className={classes["signup-item"]}>
+              <li>
                 <NavLink to="/sign-up">Sign Up</NavLink>
               </li>
             )}
             {isLoggedIn && (
               <li>
-                <NavLink to="/my-todos" activeClassName={classes["active"]}>
-                  My Todos
-                </NavLink>
+                <NavLink to="/my-todos">My Todos</NavLink>
               </li>
             )}
-            {isLoggedIn && (
-              <li className={classes["logout-item"]} onClick={logoutUser}>
-                Logout
-              </li>
-            )}
-          </ul>
-        </div>
+            {isLoggedIn && <LogoutBtn onClick={logoutUser}>Logout</LogoutBtn>}
+          </Links>
+        </Content>
       </Container>
-    </section>
+    </Wrapper>
   );
 };
 
