@@ -1,63 +1,79 @@
 import axios from "axios";
-import React, { useState, useContext } from "react";
-import { AuthContext } from "./auth-context";
+import React, { useState } from "react";
 
 export const TodoContext = React.createContext({
   todos: [],
+  getTodos: () => {},
   setTodos: () => {},
   addTodo: () => {},
   removeTodo: () => {},
-  fetchData: () => {},
 });
+
+const generateUsername = (email) => {
+  return email?.split("@").at(0) + "-todos";
+};
 
 const TodoContextProvider = (props) => {
   const [todos, setTodos] = useState([]);
-  const { generatedUsername, currentUser } = useContext(AuthContext);
 
-  let username = generatedUsername(currentUser?.email);
-
-  let baseUrl =
-    "https://auth-todo-app-234f0-default-rtdb.europe-west1.firebasedatabase.app/";
-
-  const fetchData = () => {
-    axios.get(`${baseUrl}/${username}.json`).then((response) => {
+  const getTodosHandler = async (user) => {
+    try {
       const loadedTodos = [];
-      const data = response.data;
+      const response = await axios.get(
+        `${process.env.REACT_APP_FIREBASE_LINK}/${generateUsername(user)}.json`
+      );
 
-      for (const key in data) {
+      for (const key in response.data) {
         loadedTodos.push({
           id: key,
-          todo: data[key].todo,
+          todo: response.data[key].todo,
         });
       }
+
       setTodos(loadedTodos);
-    });
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
-  const addTodoHandler = (todo) => {
-    axios({
-      method: "POST",
-      url: `${baseUrl}/${username}.json`,
-      data: { todo: todo },
-    }).then((response) => {
+  const addTodoHandler = async (todo, user) => {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_FIREBASE_LINK}/${generateUsername(
+          user
+        )}.json`,
+        data: { todo: todo },
+      });
+
       setTodos((prevState) => {
         return [...prevState, { id: response.data.name, todo: todo }];
       });
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const removeTodoHandler = (todoId) => {
-    axios.delete(`${baseUrl}/${username}/${todoId}.json`).then((response) => {
+  const removeTodoHandler = async (todoId, user) => {
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_FIREBASE_LINK}/${generateUsername(
+          user
+        )}/${todoId}.json`
+      );
+
       setTodos(todos.filter((todo) => todo.id !== todoId));
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const contextValue = {
     todos,
+    getTodos: getTodosHandler,
     setTodos,
     addTodo: addTodoHandler,
     removeTodo: removeTodoHandler,
-    fetchData,
   };
 
   return (

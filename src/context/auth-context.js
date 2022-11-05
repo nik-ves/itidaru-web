@@ -4,26 +4,23 @@ import React, { useState } from "react";
 export const AuthContext = React.createContext({
   currentUser: {},
   isLoggedIn: false,
-  registerUser: () => {},
-  registerMessage: "",
-  authUser: () => {},
-  authMessage: "",
+  signUpUser: () => {},
+  signInUser: () => {},
   logoutUser: () => {},
-  generatedUsername: () => {},
+  responseMessage: "",
 });
 
 const AuthContextProvider = (props) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [registerMessage, setRegisterMessage] = useState("");
-  const [authMessage, setAuthMessage] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
 
   const isLoggedIn = currentUser;
 
-  const registerUserHandler = async (userEmail, userPassword) => {
+  const signUpUserHandler = async (userEmail, userPassword) => {
     try {
       const response = await axios({
         method: "POST",
-        url: "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
+        url: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_FIREBASE_KEY}`,
         data: {
           email: userEmail,
           password: userPassword,
@@ -36,15 +33,15 @@ const AuthContextProvider = (props) => {
         email: response.data.email,
       });
     } catch (error) {
-      setRegisterMessage(error.response.data.error.message);
+      checkAndSetResponseMessage(error.response.data.error.message);
     }
   };
 
-  const authenticateUserHandler = async (userEmail, userPassword) => {
+  const signInUserHandler = async (userEmail, userPassword) => {
     try {
       const response = await axios({
         method: "POST",
-        url: "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDj4crYXVWs0_YD69hakAWSao3x0pCAxHU",
+        url: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_KEY}`,
         data: {
           email: userEmail,
           password: userPassword,
@@ -57,7 +54,7 @@ const AuthContextProvider = (props) => {
         email: response.data.email,
       });
     } catch (error) {
-      setAuthMessage(error.response.data.error.message);
+      checkAndSetResponseMessage(error.response.data.error.message);
     }
   };
 
@@ -65,27 +62,43 @@ const AuthContextProvider = (props) => {
     setCurrentUser(null);
   };
 
-  const generatedUsername = (email) => {
-    return email?.split("@").at(0) + "--todos";
+  const checkAndSetResponseMessage = (message) => {
+    switch (message) {
+      case "WEAK_PASSWORD : Password should be at least 6 characters":
+        setResponseMessage(
+          "Your password needs to be at least 6 characters long!"
+        );
+        break;
+      case "EMAIL_EXISTS":
+        setResponseMessage("This email is already in use!");
+        break;
+
+      case "INVALID_PASSWORD":
+        setResponseMessage("Password is incorrect!");
+        break;
+      case "EMAIL_NOT_FOUND":
+        setResponseMessage("User with this emails was not found!");
+        break;
+      default:
+        setResponseMessage("Something went wrong. Try again later.");
+        break;
+    }
   };
 
   // hiding the error message after 5s
-  if (registerMessage || authMessage) {
+  if (responseMessage) {
     setTimeout(() => {
-      setRegisterMessage("");
-      setAuthMessage("");
+      setResponseMessage("");
     }, 5000);
   }
 
   const authValue = {
     currentUser,
     isLoggedIn,
-    registerUser: registerUserHandler,
-    registerMessage,
-    authUser: authenticateUserHandler,
-    authMessage,
+    signUpUser: signUpUserHandler,
+    signInUser: signInUserHandler,
     logoutUser: logoutUserHandler,
-    generatedUsername,
+    responseMessage,
   };
 
   return (

@@ -16,12 +16,12 @@ const SignUp = () => {
     valueReset: resetUserPasswordInput,
   } = useInput();
 
-  const { registerUser, registerMessage } = useContext(AuthContext);
+  const { signUpUser, responseMessage } = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    registerUser(userEmail, userPassword);
+    signUpUser(userEmail, userPassword);
 
     resetUserEmailInput();
     resetUserPasswordInput();
@@ -58,7 +58,7 @@ const SignUp = () => {
           <div className="form-actions">
             <button type="submit">Sign Up</button>
           </div>
-          <p className="form-status-message">{registerMessage}</p>
+          <p className="form-status-message">{responseMessage}</p>
         </form>
       </section>
     </Container>

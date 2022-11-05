@@ -18,7 +18,6 @@ function App() {
       <MainNavigation />
 
       <GlobalStyles />
-
       <Switch>
         <Route path="/" exact>
           <Home />

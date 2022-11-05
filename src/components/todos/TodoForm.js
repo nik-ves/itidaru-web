@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { TodoContext } from "../../context/todo-context";
+import { AuthContext } from "../../context/auth-context";
 import useInput from "../../hooks/use-input";
 
 import { Form, SubmitBtn, TextInput, Wrapper } from "./TodoForm.styles";
 
 const TodoForm = () => {
-  const todoCtx = useContext(TodoContext);
+  const { currentUser } = useContext(AuthContext);
+  const { addTodo } = useContext(TodoContext);
   const {
     inputValue: todo,
     valueChangeHandler: todoChangeHandler,
@@ -15,7 +17,7 @@ const TodoForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    todoCtx.addTodo(todo);
+    addTodo(todo, currentUser.email);
 
     resetInput();
   };

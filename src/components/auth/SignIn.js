@@ -16,12 +16,12 @@ const SignIn = () => {
     valueReset: resetUserPasswordInput,
   } = useInput();
 
-  const { authUser, authMessage } = useContext(AuthContext);
+  const { signInUser, responseMessage } = useContext(AuthContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    authUser(userEmail, userPassword);
+    signInUser(userEmail, userPassword);
 
     resetUserEmailInput();
     resetUserPasswordInput();
@@ -59,7 +59,7 @@ const SignIn = () => {
           <div className="form-actions">
             <button type="submit">Sign In</button>
           </div>
-          <p className="form-status-message">{authMessage}</p>
+          <p className="form-status-message">{responseMessage}</p>
         </form>
       </section>
     </Container>
