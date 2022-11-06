@@ -4,12 +4,11 @@ import { AuthContext } from "../../context/auth-context";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
 import Container from "../UI/Container";
-
 import { List, TodoMessage } from "./TodoList.styles";
 
 const TodoList = () => {
-  const { currentUser } = useContext(AuthContext);
   const { todos, getTodos, removeTodo, setTodos } = useContext(TodoContext);
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     getTodos(currentUser.email);

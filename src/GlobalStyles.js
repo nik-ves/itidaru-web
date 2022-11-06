@@ -2,9 +2,15 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 :root {
-  --main-color: #272838;
-  --secondary-color: #9899ae;
-  --tertiary-color: #acadbe;
+  --main-color: #0d1117;
+  --secondary-color: #161b22;
+  --text-color: #fff;
+  
+  /* --main-color: ${(props) =>
+    props.darkTheme ? "palevioletred" : "white"}; */
+
+  /* #161b22 svetlija */
+  /* #0d1117 tamnija */
 }
 
 * {
@@ -36,78 +42,6 @@ button {
   font: inherit;
 }
 
-.container {
-  max-width: 120rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* ===== Auth form styles ===== */
-
-.auth-form-content {
-  display: flex;
-  justify-content: center;
-  margin-top: 10rem;
-}
-
-.sign-up-form {
-  padding: 2rem 4rem;
-  background-color: var(--main-color);
-  color: white;
-  border-radius: 4px;
-  max-width: 100%;
-  width: 40rem;
-}
-
-.form-header {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 3rem;
-}
-
-.form-control {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.form-control label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.form-control input {
-  border: 2px solid white;
-  width: 40rem;
-  max-width: 100%;
-  padding: 1rem;
-  border-radius: 4px;
-  font-size: 1.5rem;
-}
-
-.form-control input:focus {
-  outline: none;
-  border: 2px solid black;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: center;
-}
-
-.form-actions button {
-  border: 1px solid white;
-  font-size: 1.5rem;
-  padding: 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.form-status-message {
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
 /* =====  ===== */
 
 .welcome-text {
@@ -115,7 +49,7 @@ button {
   width: 80rem;
   margin: 10rem auto;
   background-color: var(--main-color);
-  color: white;
+  color: var(--text-color);
   padding: 3rem;
   border-radius: 4px;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
@@ -132,7 +66,7 @@ button {
 }
 
 .welcome-text a {
-  color: white;
+  color: var(--text-color);
   border-bottom: 1px solid white;
 }
 

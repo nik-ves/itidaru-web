@@ -4,7 +4,7 @@ export const Wrapper = styled.section`
   background-color: var(--main-color);
 
   & a {
-    color: white;
+    color: var(--text-color);
   }
 `;
 
@@ -16,7 +16,8 @@ export const Content = styled.div`
 `;
 
 export const Logo = styled.h1`
-  font-size: 2.5rem;
+  font-size: 3.5rem;
+  color: var(--text-color);
 `;
 
 export const Links = styled.ul`
@@ -26,7 +27,7 @@ export const Links = styled.ul`
 
   & li {
     margin-left: 2.5rem;
-    color: white;
+    color: var(--text-color);
   }
 
   & a {

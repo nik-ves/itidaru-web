@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ListItem = styled.li`
   background-color: var(--main-color);
-  color: #fff;
+  color: var(--text-color);
   margin-bottom: 1.5rem;
   max-width: 100%;
   padding: 1rem;

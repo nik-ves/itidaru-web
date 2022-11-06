@@ -69,6 +69,7 @@ const AuthContextProvider = (props) => {
           "Your password needs to be at least 6 characters long!"
         );
         break;
+
       case "EMAIL_EXISTS":
         setResponseMessage("This email is already in use!");
         break;
@@ -76,16 +77,22 @@ const AuthContextProvider = (props) => {
       case "INVALID_PASSWORD":
         setResponseMessage("Password is incorrect!");
         break;
+
       case "EMAIL_NOT_FOUND":
         setResponseMessage("User with this emails was not found!");
         break;
+
+      case "INVALID_EMAIL":
+        setResponseMessage("Please enter a valid email!");
+        break;
+
       default:
         setResponseMessage("Something went wrong. Try again later.");
         break;
     }
   };
 
-  // hiding the error message after 5s
+  // Hiding the error message after 5s
   if (responseMessage) {
     setTimeout(() => {
       setResponseMessage("");

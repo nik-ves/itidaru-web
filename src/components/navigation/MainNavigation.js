@@ -19,20 +19,13 @@ const MainNavigation = () => {
       <Container>
         <Content>
           <Link to="/">
-            <Logo>Itidaru</Logo>
+            <Logo>ITIDARU</Logo>
           </Link>
 
           <Links>
             {!isLoggedIn && (
               <li>
-                <NavLink to="/sign-in" exact>
-                  Sign In
-                </NavLink>
-              </li>
-            )}
-            {!isLoggedIn && (
-              <li>
-                <NavLink to="/sign-up">Sign Up</NavLink>
+                <NavLink to="/auth">Auth</NavLink>
               </li>
             )}
             {isLoggedIn && (
