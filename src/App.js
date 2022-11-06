@@ -12,21 +12,12 @@ import GlobalStyles from "./GlobalStyles";
 
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
-  const [darkThemeColors, setDarkThemeColors] = useState(true);
 
   return (
     <Fragment>
       <MainNavigation />
 
-      <GlobalStyles darkTheme={darkThemeColors} />
-
-      <button
-        onClick={() => {
-          setDarkThemeColors(!darkThemeColors);
-        }}
-      >
-        {darkThemeColors ? "Svetlo" : "Mracno"}
-      </button>
+      <GlobalStyles />
 
       <Switch>
         <Route path="/" exact>
