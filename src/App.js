@@ -17,7 +17,7 @@ function App() {
     <Fragment>
       <MainNavigation />
 
-      <GlobalStyles />
+      <GlobalStyles darkTheme={true} />
 
       <Switch>
         <Route path="/" exact>

@@ -36,7 +36,7 @@ const TodoList = () => {
           ))}
 
           <TodoMessage>
-            {todos.length === 0 ? "No todos. Add some!" : ""}
+            {todos?.length === 0 ? "No todos. Add some!" : ""}
           </TodoMessage>
         </List>
       </Content>

@@ -22,7 +22,7 @@ export const Form = styled.form`
 `;
 
 export const TextInput = styled.input`
-  width: 70%;
+  width: 75%;
   padding: 0.7rem 1rem;
   border-radius: 4px;
   border: none;
@@ -37,6 +37,7 @@ export const SubmitBtn = styled.button`
   border-radius: 4px;
   font-size: 1.5rem;
   cursor: pointer;
+  width: 20%;
 
   &:hover {
     background-color: transparent;

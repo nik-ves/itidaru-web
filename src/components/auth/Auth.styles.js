@@ -58,12 +58,6 @@ export const RequestBtn = styled.button`
   cursor: pointer;
 `;
 
-export const ResponseMessage = styled.p`
-  margin-top: 1.5rem;
-  text-align: center;
-  font-size: 1.5rem;
-`;
-
 export const SwitchFormMessage = styled.p`
   margin-top: 1.5rem;
   text-align: center;

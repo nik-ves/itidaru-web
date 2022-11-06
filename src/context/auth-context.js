@@ -86,6 +86,10 @@ const AuthContextProvider = (props) => {
         setResponseMessage("Please enter a valid email!");
         break;
 
+      case "MISSING_PASSWORD":
+        setResponseMessage("Please enter a password!");
+        break;
+
       default:
         setResponseMessage("Something went wrong. Try again later.");
         break;

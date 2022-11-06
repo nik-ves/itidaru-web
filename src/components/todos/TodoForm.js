@@ -17,6 +17,8 @@ const TodoForm = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
+    if (todo.length < 1) return;
+
     addTodo(todo, currentUser.email);
 
     resetInput();
@@ -28,6 +30,7 @@ const TodoForm = () => {
         <TextInput
           type="text"
           id="text"
+          minlength="5"
           value={todo}
           onChange={todoChangeHandler}
         />

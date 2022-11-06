@@ -11,10 +11,11 @@ import {
   Input,
   Label,
   RequestBtn,
-  ResponseMessage,
   Title,
   SwitchFormMessage,
 } from "./Auth.styles";
+
+import ResponseMessage from "../UI/ResponseMessage";
 
 const Auth = () => {
   const [signUpForm, setSignUpForm] = useState(false);
@@ -73,7 +74,9 @@ const Auth = () => {
           </Control>
 
           <Actions>
-            <RequestBtn type="submit">Sign In</RequestBtn>
+            <RequestBtn type="submit">
+              {signUpForm ? "Sign up" : "Sign in"}
+            </RequestBtn>
           </Actions>
 
           <SwitchFormMessage
@@ -86,7 +89,9 @@ const Auth = () => {
               : "No account? Create one here!"}
           </SwitchFormMessage>
 
-          <ResponseMessage>{responseMessage}</ResponseMessage>
+          {responseMessage && (
+            <ResponseMessage>{responseMessage}</ResponseMessage>
+          )}
         </Form>
       </Content>
     </Container>

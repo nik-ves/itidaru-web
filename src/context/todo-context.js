@@ -8,6 +8,8 @@ export const TodoContext = React.createContext({
   addTodo: () => {},
   updateTodo: () => {},
   removeTodo: () => {},
+  successMessage: "",
+  errorMessage: "",
 });
 
 const generateUsername = (email) => {
@@ -16,6 +18,15 @@ const generateUsername = (email) => {
 
 const TodoContextProvider = (props) => {
   const [todos, setTodos] = useState([]);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  if (successMessage || errorMessage) {
+    setTimeout(() => {
+      setSuccessMessage(null);
+      setErrorMessage();
+    }, 2000);
+  }
 
   const getTodosHandler = async (user) => {
     try {
@@ -33,7 +44,7 @@ const TodoContextProvider = (props) => {
 
       setTodos(loadedTodos);
     } catch (error) {
-      console.log(error.response);
+      setErrorMessage("Something went wrong. Try again later.");
     }
   };
 
@@ -51,7 +62,7 @@ const TodoContextProvider = (props) => {
         return [...prevState, { id: response.data.name, todo: todo }];
       });
     } catch (error) {
-      console.log(error);
+      setErrorMessage("Something went wrong. Try again later.");
     }
   };
 
@@ -64,22 +75,17 @@ const TodoContextProvider = (props) => {
       );
 
       if (response.status === 200) {
-        console.log("Uspesno obrisano"); // Dodati globalnu poruku za ovo
         setTodos(todos.filter((todo) => todo.id !== todoId));
+        setSuccessMessage("Successfully deleted!");
       } else {
-        console.log("Something went wrong poruka "); // Dodati globalnu poruku za ovo
+        setErrorMessage("Something went wrong. Try again later.");
       }
     } catch (error) {
-      console.log(error);
+      setErrorMessage("Something went wrong. Try again later.");
     }
   };
 
-  const updateTodoHandler = async (
-    todoId,
-    user,
-    oldTodoValue,
-    newTodoValue
-  ) => {
+  const updateTodoHandler = async (todoId, user, newTodoValue) => {
     try {
       const response = await axios({
         method: "PUT",
@@ -92,18 +98,12 @@ const TodoContextProvider = (props) => {
       });
 
       if (response.status === 200) {
-        return {
-          message: "Successfully edited.",
-          todo: response.data.todo,
-        };
+        setSuccessMessage("Successfully edited!");
       } else {
-        return {
-          message: "Something went wrong. Try again later.",
-          todo: oldTodoValue,
-        };
+        setErrorMessage("Something went wrong. Try again later.");
       }
     } catch (error) {
-      console.log(error);
+      setErrorMessage("Something went wrong. Try again later.");
     }
   };
 
@@ -114,6 +114,8 @@ const TodoContextProvider = (props) => {
     addTodo: addTodoHandler,
     updateTodo: updateTodoHandler,
     removeTodo: removeTodoHandler,
+    successMessage,
+    errorMessage,
   };
 
   return (
