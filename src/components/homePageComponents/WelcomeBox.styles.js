@@ -16,9 +16,7 @@ export const Content = styled.section`
   }
 
   @media only screen and (max-width: 800px) {
-    & {
-      margin: 5rem auto;
-    }
+    margin: 5rem auto;
   }
 `;
 

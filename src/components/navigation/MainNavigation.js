@@ -1,7 +1,8 @@
 import { Link, NavLink } from "react-router-dom";
 import Container from "../UI/Container";
 import { AuthContext } from "../../context/auth-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import GlobalStyles from "../../GlobalStyles";
 
 import {
   Content,
@@ -9,13 +10,22 @@ import {
   Logo,
   LogoutBtn,
   Wrapper,
+  MoonBtn,
+  SunBtn,
 } from "./MainNavigation.styles";
 
 const MainNavigation = () => {
   const { isLoggedIn, logoutUser } = useContext(AuthContext);
+  const [darkMode, setDarkMode] = useState(true);
+
+  const darkModeHandler = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <Wrapper>
+      <GlobalStyles darkTheme={darkMode} />
+
       <Container>
         <Content>
           <Link to="/">
@@ -34,6 +44,9 @@ const MainNavigation = () => {
               </li>
             )}
             {isLoggedIn && <LogoutBtn onClick={logoutUser}>Logout</LogoutBtn>}
+            <li onClick={darkModeHandler}>
+              {darkMode && <SunBtn />} {!darkMode && <MoonBtn />}
+            </li>
           </Links>
         </Content>
       </Container>

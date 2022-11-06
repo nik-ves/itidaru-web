@@ -11,7 +11,7 @@ export const ListItem = styled.li`
   border-radius: 4px;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
   word-wrap: break-word;
-  border: 1px solid white;
+  border: 1px solid var(--accent-color);
 
   display: flex;
   justify-content: space-between;

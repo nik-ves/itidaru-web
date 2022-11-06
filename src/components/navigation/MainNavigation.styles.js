@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { BsSunFill, BsMoonFill } from "react-icons/bs";
+
 export const Wrapper = styled.section`
   background-color: var(--main-color);
 
@@ -38,6 +40,20 @@ export const Links = styled.ul`
   & a.active {
     border-bottom: 3px solid var(--text-color);
   }
+`;
+
+export const SunBtn = styled(BsSunFill)`
+  color: var(--text-color);
+  font-size: 2rem;
+  display: flex;
+  cursor: pointer;
+`;
+
+export const MoonBtn = styled(BsMoonFill)`
+  color: var(--text-color);
+  font-size: 2rem;
+  display: flex;
+  cursor: pointer;
 `;
 
 export const LogoutBtn = styled.li`

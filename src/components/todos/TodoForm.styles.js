@@ -16,7 +16,7 @@ export const Form = styled.form`
   background: var(--main-color);
   border-radius: 4px;
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
-  border: 1px solid white;
+  border: 1px solid var(--accent-color);
   margin-bottom: 2rem;
   font-size: 2rem;
 `;
@@ -25,9 +25,13 @@ export const TextInput = styled.input`
   width: 75%;
   padding: 0.7rem 1rem;
   border-radius: 4px;
-  border: none;
+  border: 2px solid transparent;
   outline: none;
   font: inherit;
+
+  &:focus {
+    border: 2px solid var(--accent-color);
+  }
 `;
 
 export const SubmitBtn = styled.button`

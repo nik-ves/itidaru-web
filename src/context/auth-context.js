@@ -100,7 +100,7 @@ const AuthContextProvider = (props) => {
   if (responseMessage) {
     setTimeout(() => {
       setResponseMessage("");
-    }, 5000);
+    }, 3000);
   }
 
   const authValue = {

@@ -18,7 +18,7 @@ const WelcomeBox = () => {
 
       <div>
         <Paragraph>
-          Itidaru is a simple app which allows you to create todos items.
+          Itidaru is a simple app which allows you to create todo items.
         </Paragraph>
 
         <Paragraph>

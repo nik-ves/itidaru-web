@@ -4,6 +4,10 @@ export const Content = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 10rem;
+
+  @media only screen and (max-width: 800px) {
+    margin: 5rem auto;
+  }
 `;
 
 export const Form = styled.form`
@@ -22,8 +26,8 @@ export const Title = styled.h2`
 `;
 
 export const Control = styled.div`
-  font-size: 2rem;
   margin-bottom: 2rem;
+  font-size: 1.5rem;
 `;
 
 export const Label = styled.label`
@@ -37,7 +41,6 @@ export const Input = styled.input`
   max-width: 100%;
   padding: 1rem;
   border-radius: 4px;
-  font-size: 1.5rem;
 
   &:focus {
     outline: none;
@@ -63,4 +66,5 @@ export const SwitchFormMessage = styled.p`
   text-align: center;
   font-size: 1.5rem;
   cursor: pointer;
+  color: var(--accent-color);
 `;

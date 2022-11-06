@@ -53,17 +53,18 @@ const Auth = () => {
           <Title>{signUpForm ? "Sign Up" : "Sign In"}</Title>
 
           <Control>
-            <Label htmlFor="email">Your email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
-              type="text"
+              type="email"
               value={userEmail}
               onChange={userEmailChangeHandler}
+              placeholder="example@example.com"
             />
           </Control>
 
           <Control>
-            <Label htmlFor="password">Your password</Label>
+            <Label htmlFor="password">Password</Label>
             <Input
               id="password"
               type="password"

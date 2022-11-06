@@ -10,10 +10,14 @@ export const Title = styled.h2`
 export const Content = styled.section`
   background-color: var(--main-color);
   width: 75rem;
-  margin: 5rem auto 0 auto;
+  margin: 10rem auto 0 auto;
   border-radius: 4px;
   padding: 2rem;
   max-width: 100%;
+
+  @media only screen and (max-width: 800px) {
+    margin: 5rem auto;
+  }
 `;
 
 export const List = styled.ul`
