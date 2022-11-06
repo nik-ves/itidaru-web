@@ -2,15 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 :root {
-  --main-color: #0d1117;
-  --secondary-color: #161b22;
+  --main-color: ${(props) => (props.darkTheme ? "#0d1117" : "#003366")};
+  --secondary-color: ${(props) => (props.darkTheme ? "#161b22" : "#fff")};
   --text-color: #fff;
-  
-  /* --main-color: ${(props) =>
-    props.darkTheme ? "palevioletred" : "white"}; */
-
-  /* #161b22 svetlija */
-  /* #0d1117 tamnija */
+  --accent-color: #dc843a;
 }
 
 * {

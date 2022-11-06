@@ -24,8 +24,6 @@ const TodoForm = () => {
 
   return (
     <Wrapper>
-      <h2>Your Todos</h2>
-
       <Form onSubmit={submitHandler}>
         <TextInput
           type="text"

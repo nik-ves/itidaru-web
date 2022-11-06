@@ -6,6 +6,7 @@ export const TodoContext = React.createContext({
   getTodos: () => {},
   setTodos: () => {},
   addTodo: () => {},
+  updateTodo: () => {},
   removeTodo: () => {},
 });
 
@@ -62,7 +63,45 @@ const TodoContextProvider = (props) => {
         )}/${todoId}.json`
       );
 
-      setTodos(todos.filter((todo) => todo.id !== todoId));
+      if (response.status === 200) {
+        console.log("Uspesno obrisano"); // Dodati globalnu poruku za ovo
+        setTodos(todos.filter((todo) => todo.id !== todoId));
+      } else {
+        console.log("Something went wrong poruka "); // Dodati globalnu poruku za ovo
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateTodoHandler = async (
+    todoId,
+    user,
+    oldTodoValue,
+    newTodoValue
+  ) => {
+    try {
+      const response = await axios({
+        method: "PUT",
+        url: `${process.env.REACT_APP_FIREBASE_LINK}/${generateUsername(
+          user
+        )}/${todoId}.json`,
+        data: {
+          todo: newTodoValue,
+        },
+      });
+
+      if (response.status === 200) {
+        return {
+          message: "Successfully edited.",
+          todo: response.data.todo,
+        };
+      } else {
+        return {
+          message: "Something went wrong. Try again later.",
+          todo: oldTodoValue,
+        };
+      }
     } catch (error) {
       console.log(error);
     }
@@ -73,6 +112,7 @@ const TodoContextProvider = (props) => {
     getTodos: getTodosHandler,
     setTodos,
     addTodo: addTodoHandler,
+    updateTodo: updateTodoHandler,
     removeTodo: removeTodoHandler,
   };
 

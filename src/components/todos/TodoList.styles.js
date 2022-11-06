@@ -1,7 +1,24 @@
 import styled from "styled-components";
 
+export const Title = styled.h2`
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 0;
+  color: var(--text-color);
+`;
+
+export const Content = styled.section`
+  background-color: var(--main-color);
+  width: 75rem;
+  margin: 5rem auto 0 auto;
+  border-radius: 4px;
+  padding: 2rem;
+  max-width: 100%;
+`;
+
 export const List = styled.ul`
-  max-width: 60rem;
+  width: 60rem;
+  max-width: 100%;
   margin: 0 auto;
 `;
 

@@ -32,7 +32,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  border: 2px solid white;
+  border: 2px solid var(--text-color);
   width: 40rem;
   max-width: 100%;
   padding: 1rem;
@@ -41,7 +41,7 @@ export const Input = styled.input`
 
   &:focus {
     outline: none;
-    border: 2px solid black;
+    border: 2px solid var(--accent-color);
   }
 `;
 
@@ -51,7 +51,7 @@ export const Actions = styled.div`
 `;
 
 export const RequestBtn = styled.button`
-  border: 1px solid white;
+  border: 1px solid var(--text-color);
   font-size: 1.5rem;
   padding: 1rem;
   border-radius: 4px;

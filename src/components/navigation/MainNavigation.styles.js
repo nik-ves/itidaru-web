@@ -36,7 +36,7 @@ export const Links = styled.ul`
   }
 
   & a.active {
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid var(--text-color);
   }
 `;
 

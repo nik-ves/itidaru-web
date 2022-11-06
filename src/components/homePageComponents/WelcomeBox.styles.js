@@ -11,8 +11,8 @@ export const Content = styled.section`
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 
   & a {
-    color: var(--text-color);
-    border-bottom: 1px solid white;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
   }
 
   @media only screen and (max-width: 800px) {
