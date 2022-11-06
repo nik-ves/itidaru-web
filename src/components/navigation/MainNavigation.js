@@ -19,7 +19,7 @@ const MainNavigation = () => {
       <Container>
         <Content>
           <Link to="/">
-            <Logo>ITIDARU</Logo>
+            <Logo>Itidaru</Logo>
           </Link>
 
           <Links>
