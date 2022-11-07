@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/auth-context";
 import Container from "../UI/Container";
 import useInput from "../../hooks/use-input";
-
+import ResponseMessage from "../UI/ResponseMessage";
 import {
   Actions,
   Content,
@@ -14,8 +14,6 @@ import {
   Title,
   SwitchFormMessage,
 } from "./Auth.styles";
-
-import ResponseMessage from "../UI/ResponseMessage";
 
 const Auth = () => {
   const [signUpForm, setSignUpForm] = useState(false);

@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./context/auth-context";
 
@@ -8,16 +8,12 @@ import TodoList from "./components/todos/TodoList";
 import Home from "./pages/Home";
 import Auth from "./components/auth/Auth";
 
-import GlobalStyles from "./GlobalStyles";
-
 function App() {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
     <Fragment>
       <MainNavigation />
-
-      {/* <GlobalStyles darkTheme={true} /> */}
 
       <Switch>
         <Route path="/" exact>

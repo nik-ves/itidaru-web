@@ -7,16 +7,13 @@ import Container from "../UI/Container";
 import { List, TodoMessage, Content, Title } from "./TodoList.styles";
 
 const TodoList = () => {
-  const { todos, getTodos, removeTodo, setTodos } = useContext(TodoContext);
+  const { todos, getTodos } = useContext(TodoContext);
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     getTodos(currentUser.email);
-
-    return () => {
-      setTodos([]);
-    };
-  }, []);
+    // I want to keep dependencies array empty
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container>
@@ -26,17 +23,12 @@ const TodoList = () => {
         <TodoForm />
 
         <List>
-          {todos.map((todo, index) => (
-            <TodoItem
-              key={index}
-              todo={todo}
-              todoText={todo.todo}
-              removeTodo={removeTodo.bind(this, todo.id, currentUser.email)}
-            />
+          {todos.map((todo) => (
+            <TodoItem key={todo.id} todo={todo} todoText={todo.todo} />
           ))}
 
           <TodoMessage>
-            {todos?.length === 0 ? "No todos. Add some!" : ""}
+            {todos.length === 0 ? "No todos. Add some!" : ""}
           </TodoMessage>
         </List>
       </Content>
