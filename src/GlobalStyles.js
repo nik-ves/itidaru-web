@@ -18,6 +18,10 @@ html {
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: scroll;
   font-size: 62.5%;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 1rem;
+  }
 }
 
 body {

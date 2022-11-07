@@ -10,6 +10,7 @@ const Message = styled.span`
   padding: 0.5rem;
   background-color: ${(props) => (props.success ? "green" : "red")};
   border-radius: 4px;
+  text-align: center;
 `;
 
 const ResponseMessage = (props) => {

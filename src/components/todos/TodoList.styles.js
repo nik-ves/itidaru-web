@@ -5,6 +5,10 @@ export const Title = styled.h2`
   font-size: 3.5rem;
   margin-bottom: 0;
   color: var(--text-color);
+
+  @media only screen and (max-width: 400px) {
+    font-size: 3rem;
+  }
 `;
 
 export const Content = styled.section`

@@ -24,16 +24,28 @@ export const TitleBox = styled.div`
   padding-bottom: 1rem;
   border-bottom: 1px solid grey;
   margin-bottom: 5rem;
+
+  @media only screen and (max-width: 800px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 export const Title = styled.h1`
   text-align: center;
   font-size: 4rem;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 3rem;
+  }
 `;
 
 export const Paragraph = styled.p`
   font-size: 2rem;
   margin-top: 1.5rem;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const FooterBox = styled.div`
@@ -41,4 +53,8 @@ export const FooterBox = styled.div`
   border-top: 1px solid grey;
   margin-top: 5rem;
   text-align: center;
+
+  @media only screen and (max-width: 800px) {
+    margin-top: 2rem;
+  }
 `;

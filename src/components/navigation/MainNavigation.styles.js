@@ -20,6 +20,10 @@ export const Content = styled.div`
 export const Logo = styled.h1`
   font-size: 3.5rem;
   color: var(--text-color);
+
+  @media only screen and (max-width: 400px) {
+    font-size: 3rem;
+  }
 `;
 
 export const Links = styled.ul`
@@ -27,9 +31,17 @@ export const Links = styled.ul`
   font-size: 1.8rem;
   align-items: center;
 
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5rem;
+  }
+
   & li {
     margin-left: 2.5rem;
     color: var(--text-color);
+
+    @media only screen and (max-width: 400px) {
+      margin-left: 1.5rem;
+    }
   }
 
   & a {
@@ -47,6 +59,10 @@ export const SunBtn = styled(BsSunFill)`
   font-size: 2rem;
   display: flex;
   cursor: pointer;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const MoonBtn = styled(BsMoonFill)`
@@ -54,6 +70,10 @@ export const MoonBtn = styled(BsMoonFill)`
   font-size: 2rem;
   display: flex;
   cursor: pointer;
+
+  @media only screen and (max-width: 400px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const LogoutBtn = styled.li`
