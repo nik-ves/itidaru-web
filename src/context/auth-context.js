@@ -79,7 +79,7 @@ const AuthContextProvider = (props) => {
         break;
 
       case "EMAIL_NOT_FOUND":
-        setResponseMessage("User with this emails was not found!");
+        setResponseMessage("User with this email was not found!");
         break;
 
       case "INVALID_EMAIL":

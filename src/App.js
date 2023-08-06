@@ -6,6 +6,7 @@ import MainNavigation from "./components/navigation/MainNavigation";
 import TodoList from "./components/todos/TodoList";
 
 import Home from "./pages/Home";
+import PageNotFound from "./pages/PageNotFound";
 import Auth from "./components/auth/Auth";
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
         <Route path="/auth" exact>
           {!isLoggedIn && <Auth />}
           {isLoggedIn && <Redirect to="/" />}
+        </Route>
+
+        <Route path="*">
+          <PageNotFound />
         </Route>
       </Switch>
     </Fragment>
